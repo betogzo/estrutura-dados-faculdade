@@ -37,7 +37,10 @@ void imprime(Pilha *pilha) {
   aux = pilha->topo;
 
   system("clear");
-  
+
+  if(pilha->tamanho == 0)
+    printf("Pilha vazia!");
+
   printf("\n[ ");
   while(aux != NULL) {
     if (aux->proximo == NULL) {
@@ -49,8 +52,22 @@ void imprime(Pilha *pilha) {
   }
   printf(" ]\n");
 
-  printf("Tamanho da pilha: %d\n", pilha->tamanho);
+  if(pilha->tamanho > 0)
+    printf("Tamanho da pilha: %d\n", pilha->tamanho);
+}
 
+void limparPilha(Pilha *pilha) {
+  if(pilha->tamanho == 0)
+    printf("Nada a limpar. A pilha já está vazia!");
+  
+  int tamanho = pilha->tamanho;
+
+  while(tamanho > 0) {
+    desempilhar(pilha);
+    tamanho--;
+  }
+  system("clear");
+  printf("\n[ ] A pilha foi limpa com sucesso.\n");
 }
 
 int main() {
@@ -64,13 +81,10 @@ int main() {
   empilhar(&pilha, 4);
   empilhar(&pilha, 5);
   empilhar(&pilha, 6);
+  desempilhar(&pilha);
   imprime(&pilha);
 
-  desempilhar(&pilha);
-  desempilhar(&pilha);
-  desempilhar(&pilha);
-
-  imprime(&pilha);
+  // limparPilha(&pilha);
 
   return 0;
 }
