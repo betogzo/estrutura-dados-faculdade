@@ -41,12 +41,22 @@ void sairDaFila(Fila *fila) {
   fila->tamanho--;
 }
 
+void limparFila(Fila *fila) {
+  int tamanho = fila->tamanho;
+
+  while(tamanho > 0) {
+    sairDaFila(fila);
+    tamanho--;
+  }
+  printf("\nFila limpa com sucesso!\n");
+}
+
 int imprimeFila(Fila *fila) {
   No *atual;
   atual = fila->inicio;
 
   if(atual == NULL) {
-    printf("Fila vazia!");
+    printf("Fila vazia!\n");
     return -1;
   }
 
@@ -81,5 +91,6 @@ int main() {
   sairDaFila(&fila);
   imprimeFila(&fila);
 
+  // limparFila(&fila);
   return 0;
 }
